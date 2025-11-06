@@ -41,6 +41,16 @@ export const TabNavigation = () => {
       >
         Details
       </button>
+      <button
+        onClick={() => setActiveTab("bridge")}
+        className={`font-medium h-9 px-4 transition-colors min-w-[120px] text-base ${
+          activeTab === "bridge"
+            ? "btn-primary text-white"
+            : "text-gray-900 btn-transparent"
+        }`}
+      >
+        Bridge
+      </button>
       {isAdmin && (
         <button
           onClick={() => setActiveTab("admin")}

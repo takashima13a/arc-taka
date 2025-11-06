@@ -31,7 +31,7 @@ export default function DashboardOverview() {
   
   // Total Coupons Paid = Cumulative Index × Total Supply
   const cumulativeIndex = seriesInfo?.[4] ? formatUnits(seriesInfo[4], 6) : "0";
-  const totalCouponsPaid = (parseFloat(cumulativeIndex) * parseFloat(totalSupply)).toFixed(6);
+  const totalCouponsPaid = (parseFloat(cumulativeIndex) * parseFloat(totalSupply)).toFixed(2);
   
   // Record count
   const recordCount = seriesInfo?.[3]?.toString() ?? "0";

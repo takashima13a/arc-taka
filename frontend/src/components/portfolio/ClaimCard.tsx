@@ -38,18 +38,18 @@ export default function ClaimCard() {
 
   return (
     <div className="card">
-      <h3 className="text-lg font-bold mb-4 text-gray-900">Claim Coupon</h3>
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-bold text-gray-900">Claim Coupon</h3>
+        <div className="text-sm text-gray-600">
+          ℹ️ Coupons are paid daily at 1% per day
+        </div>
+      </div>
       
       <div className="space-y-4">
         <div className="bg-gray-50 border border-custom rounded-lg p-4 text-center">
-          <div className="text-sm text-gray-600 mb-2">Claimable Amount</div>
-          <div className="text-lg font-bold text-gray-900">
-            {claimableAmount} <span className="text-sm text-gray-500">USDC</span>
+          <div className="text-base text-gray-900">
+            Claimable Amount: <span className="font-bold">{claimableAmount} USDC</span>
           </div>
-        </div>
-
-        <div className="text-sm text-gray-600 bg-blue-50 border border-blue-200 rounded-lg p-3">
-          ℹ️ Coupons are paid daily at 1% per day
         </div>
 
         <button

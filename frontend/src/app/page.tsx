@@ -6,6 +6,7 @@ import { useAccount } from "wagmi";
 import DetailsPage from "@/components/dashboard/DashboardOverview";
 import DepositPage from "@/components/dashboard/Dashboard";
 import Portfolio from "@/components/portfolio/Portfolio";
+import BridgePage from "@/components/bridge/Bridge";
 import Admin from "@/components/admin/Admin";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       {activeTab === "details" && <DetailsPage />}
       {activeTab === "deposit" && <DepositPage />}
       {activeTab === "portfolio" && <Portfolio />}
+      {activeTab === "bridge" && <BridgePage />}
       {activeTab === "admin" && isAdmin && <Admin />}
     </>
   );

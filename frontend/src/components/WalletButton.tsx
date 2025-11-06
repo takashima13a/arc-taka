@@ -12,6 +12,7 @@ export const WalletButton = () => {
   const { switchChain } = useSwitchChain();
   const [mounted, setMounted] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Handle hydration
@@ -50,6 +51,8 @@ export const WalletButton = () => {
   const copyAddress = () => {
     if (address) {
       navigator.clipboard.writeText(address);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }
   };
 
@@ -71,10 +74,10 @@ export const WalletButton = () => {
         <button
           onClick={() => !isCorrectNetwork && switchChain({ chainId: ARC_TESTNET_CHAIN_ID })}
           disabled={isCorrectNetwork}
-          className={`h-9 px-4 rounded-lg font-medium text-sm flex items-center gap-2 ${
+          className={`h-9 px-4 rounded-lg font-medium text-sm flex items-center gap-2 transition-all ${
             isCorrectNetwork
               ? 'bg-gray-100 text-gray-600 border border-custom cursor-default'
-              : 'bg-yellow-100 text-yellow-700 border border-yellow-300 hover:bg-yellow-200'
+              : 'bg-orange-50 text-orange-700 border border-orange-300 hover:bg-orange-100 animate-pulse'
           }`}
         >
           {isCorrectNetwork ? (
@@ -83,7 +86,10 @@ export const WalletButton = () => {
               Arc Testnet
             </>
           ) : (
-            '⚠️ Wrong Network'
+            <>
+              <span className="text-orange-600">⚠️</span>
+              Switch to Arc
+            </>
           )}
         </button>
         
@@ -99,7 +105,7 @@ export const WalletButton = () => {
           </button>
         
         {isDropdownOpen && (
-          <div className="absolute right-0 mt-2 w-64 bg-secondary rounded-lg shadow-lg border border-custom z-50">
+          <div className="absolute right-0 mt-2 w-52 bg-secondary rounded-lg shadow-lg border border-custom z-50">
             <div className="p-4">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-sm text-gray-900 font-semibold">Wallet Address</span>
@@ -117,10 +123,18 @@ export const WalletButton = () => {
                 </span>
                 <button
                   onClick={copyAddress}
-                  className="text-gray-600 hover:text-gray-900 p-1 text-xs"
+                  className={`p-1 transition-all ${
+                    copied 
+                      ? 'text-green-600 scale-110' 
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
                   title="Copy address"
                 >
-                  📋
+                  <img 
+                    src="/copy.svg" 
+                    alt="Copy" 
+                    className={`w-4 h-4 transition-transform ${copied ? 'scale-110' : ''}`}
+                  />
                 </button>
               </div>
               

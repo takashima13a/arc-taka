@@ -6,6 +6,9 @@ import { TabProvider } from "@/contexts/TabContext";
 export const metadata = {
   title: "ArcBond - Decentralized Bond System",
   description: "ArcBond - Bond issuance platform on Arc Network. Earn fixed income with on-chain bonds.",
+  icons: {
+    icon: '/arc.svg',
+  },
 };
 
 export const dynamic = 'force-dynamic';

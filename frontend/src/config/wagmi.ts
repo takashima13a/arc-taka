@@ -1,5 +1,5 @@
 import { createConfig, http } from 'wagmi';
-import { sepolia } from 'wagmi/chains';
+import { sepolia, baseSepolia, arbitrumSepolia, optimismSepolia } from 'wagmi/chains';
 import { defineChain } from 'viem';
 import { injected } from 'wagmi/connectors';
 
@@ -13,7 +13,7 @@ export const arcTestnet = defineChain({
     decimals: 18,
   },
   rpcUrls: {
-    default: { http: [process.env.NEXT_PUBLIC_ARC_RPC_URL || 'https://rpc.testnet.arc.network'] },
+    default: { http: ['https://rpc.testnet.arc.network'] },
   },
   blockExplorers: {
     default: { name: 'ArcScan', url: 'https://testnet.arcscan.app' },
@@ -21,8 +21,14 @@ export const arcTestnet = defineChain({
   testnet: true,
 });
 
-// Supported chains (Arc is primary, Sepolia is secondary)
-export const chains = [arcTestnet, sepolia] as const;
+// Supported chains (5 testnets for bridge)
+export const chains = [
+  arcTestnet,
+  sepolia,
+  baseSepolia,
+  arbitrumSepolia,
+  optimismSepolia,
+] as const;
 
 // Network configs for UI (centralized)
 export const networksConfig = [
@@ -46,8 +52,11 @@ export const wagmiConfig = createConfig({
     injected(),
   ],
   transports: {
-    [arcTestnet.id]: http(process.env.NEXT_PUBLIC_ARC_RPC_URL || 'https://rpc.testnet.arc.network'),
-    [sepolia.id]: http(process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL || 'https://ethereum-sepolia.publicnode.com'),
+    [arcTestnet.id]: http('https://rpc.testnet.arc.network'),
+    [sepolia.id]: http('https://ethereum-sepolia.publicnode.com'),
+    [baseSepolia.id]: http('https://sepolia.base.org'),
+    [arbitrumSepolia.id]: http('https://sepolia-rollup.arbitrum.io/rpc'),
+    [optimismSepolia.id]: http('https://sepolia.optimism.io'),
   },
   ssr: false,
 });

@@ -57,3 +57,6 @@ export {
   useAdminData,
 } from './useArcBond';
 
+// Bridge hooks
+export { useBridge, type SupportedChain } from './useBridge';
+

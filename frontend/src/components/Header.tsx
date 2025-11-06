@@ -6,7 +6,7 @@ import { WalletButton } from "./WalletButton";
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-header border-b border-custom">
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="w-[90%] mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo + Tabs */}
           <div className="flex items-center gap-6">
